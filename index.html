@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cn">
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script><!-- JQUERY -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script><!-- ANGULAR -->
+	<meta charset="UTF-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.3/angular-moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/ngInfiniteScroll/1.2.1/ng-infinite-scroll.js"></script><!-- INFINITE SCROLL -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script><!-- BOOTSTRAP JS -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Camper News</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"><!-- BOOTSTRAP CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"><!-- FONTAWESOME -->
+	<link rel="stylesheet" href="main.css"><!-- MAIN CSS -->
+	<script src="main.js"></script>
+	
+</head>
+<body ng-controller="MainCtrl as main">
+	
+	<div id="header" class="container-fluid">
+		<p>Camper News</p>
+	</div>
+
+	<div class="container">
+		<div infinite-scroll="loadMore()" infinite-scroll-distance="2" class="row">
+			<div ng-repeat="newsItem in myData" class="news-row col-sm-12 col-xs-12">
+				<div class="col-sm-2 col-xs-12">
+					<div id="img-container">
+						<img ng-src={{newsItem.author.picture}} id="user-avatar" />
+					</div>
+				</div>
+				<div class="news-text col-sm-10 col-xs-12">
+					<a href={{newsItem.link}}><em>{{newsItem.headline}}</em></a>
+				</div>
+				<div class="col-sm-10 col-xs-12" id="link-description">
+					{{newsItem.metaDescription}}
+				</div>
+				<div class="col-sm-12 col-xs-12" id="bottom-text">
+					<div class="col-sm-4 col-xs-12" id="author">
+						<a href='http://www.freecodecamp.com/{{newsItem.author.username}}'>{{newsItem.author.username}}</a>
+					</div>			
+					<div class="col-sm-4 col-xs-12" id="likes">
+						<i class="fa fa-thumbs-o-up"></i> {{newsItem.upVotes.length}}
+					</div>
+					<div class="col-sm-4 col-xs-12" id="timestamp">
+						<span am-time-ago={{newsItem.timePosted}} | amFromUnix></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+
+</body>
+</html>
